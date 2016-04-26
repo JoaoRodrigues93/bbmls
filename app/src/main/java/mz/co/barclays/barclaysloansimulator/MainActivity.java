@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.SeekBar;
 import android.widget.Toast;
 
 import mz.co.barclays.barclaysloansimulator.formulas.Finance;
@@ -28,6 +29,68 @@ public class MainActivity extends AppCompatActivity {
     public static double percent;
     public static Loan loanData;
 
+    private SeekBar.OnSeekBarChangeListener onSeekBarChangeAmount = new SeekBar.OnSeekBarChangeListener() {
+        @Override
+        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            Toast.makeText(getApplicationContext(),"Loan amount "+progress,Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        public void onStartTrackingTouch(SeekBar seekBar) {
+
+        }
+
+        @Override
+        public void onStopTrackingTouch(SeekBar seekBar) {
+
+        }
+    };
+
+
+
+    private SeekBar.OnSeekBarChangeListener onSeekBarChangeInterest = new SeekBar.OnSeekBarChangeListener(){
+        @Override
+        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
+            EditText annualInterestText = (EditText) findViewById(R.id.annual_interest);
+            float progressFloat = progress;
+            float annualInterest = progressFloat/2;
+
+            annualInterestText.setText(""+annualInterest);
+        }
+
+        @Override
+        public void onStartTrackingTouch(SeekBar seekBar) {
+
+        }
+
+        @Override
+        public void onStopTrackingTouch(SeekBar seekBar) {
+
+        }
+    };
+
+    private SeekBar.OnSeekBarChangeListener onSeekBarChangeTerm = new SeekBar.OnSeekBarChangeListener(){
+        @Override
+        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            EditText loanTermText = (EditText) findViewById(R.id.loan_term);
+
+            loanTermText.setText(""+progress);
+        }
+
+        @Override
+        public void onStartTrackingTouch(SeekBar seekBar) {
+
+        }
+
+        @Override
+        public void onStopTrackingTouch(SeekBar seekBar) {
+
+        }
+    };
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +98,21 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        //SeekBar seek_amount = (SeekBar)findViewById(R.id.seek_loan_amount);
+        SeekBar seek_interest_rate = (SeekBar)findViewById(R.id.seek_interest_rate);
+        SeekBar seek_loan_term = (SeekBar)findViewById(R.id.seek_loan_term);
+
+        //seek_amount.setOnSeekBarChangeListener(onSeekBarChangeAmount);
+        seek_interest_rate.setOnSeekBarChangeListener(onSeekBarChangeInterest);
+        seek_loan_term.setOnSeekBarChangeListener(onSeekBarChangeTerm);
+
+        seek_interest_rate.setProgress(10);
+        seek_loan_term.setProgress(24);
+
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

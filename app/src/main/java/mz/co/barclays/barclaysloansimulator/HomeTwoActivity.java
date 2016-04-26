@@ -15,6 +15,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -35,8 +36,10 @@ import android.widget.Toast;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import mz.co.barclays.barclaysloansimulator.formulas.ScheduleTableFormulas;
@@ -151,9 +154,17 @@ public class HomeTwoActivity extends AppCompatActivity {
 
             List<LoanSimple> loans = new ArrayList<LoanSimple>();
 
-            loans.add(new LoanSimple("20000 MZN", "12 Months"));
-            loans.add(new LoanSimple("40000 MZN", "18 Months"));
-            loans.add(new LoanSimple("50000 MZN","24 Months"));
+            Calendar date = Calendar.getInstance();
+
+            loans.add(new LoanSimple("20000.00 MZN", "12 Months","1699.00 MZN",date));
+            loans.add(new LoanSimple("4000.00 MZN", "18 Months","3400.00 MZN",date));
+            loans.add(new LoanSimple("50000.00 MZN","24 Months","3500.00 MZN",date));
+            loans.add(new LoanSimple("20000.00 MZN", "12 Months","1699.00 MZN",date));
+            loans.add(new LoanSimple("4000.00 MZN", "18 Months","3400.00 MZN",date));
+            loans.add(new LoanSimple("50000.00 MZN","24 Months","3500.00 MZN",date));
+            loans.add(new LoanSimple("20000.00 MZN", "12 Months","1699.00 MZN",date));
+            loans.add(new LoanSimple("4000.00 MZN", "18 Months","3400.00 MZN",date));
+            loans.add(new LoanSimple("50000.00 MZN","24 Months","3500.00 MZN",date));
 
             View rootView = null;
             switch (section){
@@ -171,9 +182,9 @@ public class HomeTwoActivity extends AppCompatActivity {
                             android.R.layout.simple_list_item_1, myStringArray);*/
 
                     String[] fromColumns = {"loanAmount",
-                            "loanTerm"};
+                            "loanTerm","monthlyPayment","Data"};
 
-                    int[] toViews = {R.id.loan_amount_item, R.id.loan_term_item};
+                    int[] toViews = {R.id.loan_amount_item, R.id.loan_term_item,R.id.monthly_payment_item,R.id.date_item};
                     ArrayList<HashMap<String,String>> loansMap;
                     loansMap = toMap(loans);
                     ListAdapter adapter = new SimpleAdapter(
@@ -271,6 +282,11 @@ public class HomeTwoActivity extends AppCompatActivity {
             endOfMonthText.setText(format.format(endOfMonth));
 
 
+            loan_termText.setGravity(Gravity.CENTER_VERTICAL);
+            instalmentText.setGravity(Gravity.CENTER_VERTICAL);
+            interestText.setGravity(Gravity.CENTER_VERTICAL);
+            beginOfMonthText.setGravity(Gravity.CENTER_VERTICAL);
+            endOfMonthText.setGravity(Gravity.CENTER_VERTICAL);
             //row.setLayoutParams(paramsRow);
             row.addView(loan_termText);
             row.addView(beginOfMonthText);
@@ -312,6 +328,12 @@ public class HomeTwoActivity extends AppCompatActivity {
                 beginOfMonthText.setText(format.format(beginOfMonth));
                 endOfMonthText.setText(format.format(endOfMonth));
 
+                loan_termText.setGravity(Gravity.CENTER_VERTICAL);
+                instalmentText.setGravity(Gravity.CENTER_VERTICAL);
+                interestText.setGravity(Gravity.CENTER_VERTICAL);
+                beginOfMonthText.setGravity(Gravity.CENTER_VERTICAL);
+                endOfMonthText.setGravity(Gravity.CENTER_VERTICAL);
+
                 row1.addView(loan_termText);
                 row1.addView(beginOfMonthText);
                 row1.addView(interestText);
@@ -333,6 +355,8 @@ public class HomeTwoActivity extends AppCompatActivity {
 
                 map.put("loanAmount",loan.getLoanAmount());
                 map.put("loanTerm",loan.getLoanTerm());
+                map.put("monthlyPayment",loan.getMonthlyPayment());
+                map.put("Data","26/04/2016");
                 loanList.add(map);
             }
 

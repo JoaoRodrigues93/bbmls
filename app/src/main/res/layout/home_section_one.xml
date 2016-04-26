@@ -210,7 +210,7 @@
                 android:focusableInTouchMode="false"
                 />
         </android.support.design.widget.TextInputLayout>
-        <Button style="@style/Widget.AppCompat.Button.Colored"
+        <!--<Button style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/button_save"
@@ -222,10 +222,10 @@
             android:layout_marginTop="30dp"
             android:layout_gravity="right"
             android:onClick="saveLoan"
-            />
+            />-->
 
     </LinearLayout>
-        <View
+         <View
             android:layout_width="match_parent"
             android:layout_height="60dp"></View>
     </LinearLayout>
