@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="20dp"
+    android:paddingBottom="10dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/activity_main"
+    android:elevation="5dp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/layout_loan_amount"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/loan_amount"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/loan_amount_hint"
+            android:textSize="34sp"
+            android:inputType="numberDecimal"
+            />
+    </android.support.design.widget.TextInputLayout>
+
+        <SeekBar
+            android:id="@+id/amount_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/layout_annual_interest"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/annual_interest"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/annual_interest_hint"
+            android:inputType="numberDecimal"
+            android:textSize="20sp"
+            />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/layout_loan_term"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/loan_term"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/loan_term_hint"
+            android:inputType="number"
+            android:textSize="20sp"
+            />
+    </android.support.design.widget.TextInputLayout>
+   <!-- <TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="2dp"
+    android:text="@string/contribution_hint"
+    android:textSize="20sp"
+    />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+            <EditText
+                android:id="@+id/contribution_percent"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:hint="@string/contribution_percent_hint"
+                android:inputType="numberDecimal"
+                android:textSize="20sp"
+                />
+            <EditText
+                android:id="@+id/contribution_amount"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:hint="@string/contribution_amount_hint"
+                android:inputType="numberDecimal"
+                android:textSize="20sp"
+                />
+    </LinearLayout>-->
+
+
+    <Button style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/calculate_button"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:textSize="20sp"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="right"
+        android:onClick="calculateLoan"
+     />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
