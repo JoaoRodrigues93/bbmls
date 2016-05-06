@@ -1,5 +1,8 @@
 package mz.co.barclays.barclaysloansimulator;
 
+import android.content.Context;
+import android.content.res.ColorStateList;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -42,8 +45,11 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import mz.co.barclays.barclaysloansimulator.database.LoanContract;
 import mz.co.barclays.barclaysloansimulator.formulas.ScheduleTableFormulas;
+import mz.co.barclays.barclaysloansimulator.models.Loan;
 import mz.co.barclays.barclaysloansimulator.models.LoanSimple;
+import mz.co.barclays.barclaysloansimulator.models.LoanTableAcess;
 import mz.co.barclays.barclaysloansimulator.models.ScheduleTable;
 
 public class HomeTwoActivity extends AppCompatActivity {
@@ -57,6 +63,7 @@ public class HomeTwoActivity extends AppCompatActivity {
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
+    public static Context context;
 
     /**
      * The {@link ViewPager} that will host the section contents.
@@ -67,6 +74,8 @@ public class HomeTwoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_two);
+
+        context = getApplicationContext();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -95,8 +104,15 @@ public class HomeTwoActivity extends AppCompatActivity {
     }
 
     public void saveLoan(View view){
-        Toast.makeText(view.getContext(),"Saving a loan",Toast.LENGTH_LONG);
+        long id;
+        LoanTableAcess loanTableAcess = new LoanTableAcess(getApplicationContext());
+        Loan loan = MainActivity.loanData;
+        id = loanTableAcess.insert(loan);
+
+        Toast.makeText(view.getContext(),"Loan Saved",Toast.LENGTH_LONG).show();
     }
+
+
 
 
     @Override
@@ -152,19 +168,12 @@ public class HomeTwoActivity extends AppCompatActivity {
 
             int section = getArguments().getInt(ARG_SECTION_NUMBER);
 
-            List<LoanSimple> loans = new ArrayList<LoanSimple>();
+            List<Loan> loans = new ArrayList<Loan>();
 
             Calendar date = Calendar.getInstance();
 
-            loans.add(new LoanSimple("20000.00 MZN", "12 Months","1699.00 MZN",date));
-            loans.add(new LoanSimple("4000.00 MZN", "18 Months","3400.00 MZN",date));
-            loans.add(new LoanSimple("50000.00 MZN","24 Months","3500.00 MZN",date));
-            loans.add(new LoanSimple("20000.00 MZN", "12 Months","1699.00 MZN",date));
-            loans.add(new LoanSimple("4000.00 MZN", "18 Months","3400.00 MZN",date));
-            loans.add(new LoanSimple("50000.00 MZN","24 Months","3500.00 MZN",date));
-            loans.add(new LoanSimple("20000.00 MZN", "12 Months","1699.00 MZN",date));
-            loans.add(new LoanSimple("4000.00 MZN", "18 Months","3400.00 MZN",date));
-            loans.add(new LoanSimple("50000.00 MZN","24 Months","3500.00 MZN",date));
+            loans = HomeTwoActivity.readLoan();
+
 
             View rootView = null;
             switch (section){
@@ -204,6 +213,34 @@ public class HomeTwoActivity extends AppCompatActivity {
             return rootView;
         }
 
+        public List<Loan> readLoan (View view ) {
+            Cursor cursor;
+            LoanTableAcess loanTableAcess = new LoanTableAcess(view.getContext());
+            cursor = loanTableAcess.getAll();
+
+            List<Loan> loans = new ArrayList<Loan>();
+
+            Loan loan;
+
+            while (!cursor.isClosed()){
+                Calendar date;
+                cursor.moveToNext();
+                loan = new Loan();
+                loan.setLoanAmount(cursor.getDouble(1));
+                loan.setAnnualInterest(cursor.getDouble(2));
+                loan.setMonthlyPayment(cursor.getDouble(3));
+                loan.setLoanTerm(cursor.getInt(4));
+                loan.setTotalAmount(cursor.getDouble(5));
+                loan.setTotalInterest(cursor.getDouble(6));
+                date = Calendar.getInstance();
+                date.setTimeInMillis(cursor.getLong(7));
+                loan.setDateSaved(date);
+                loans.add(loan);
+            }
+
+            return loans;
+        }
+
         private void preencheDetalhes(View view){
             DecimalFormat format = new DecimalFormat("#0.00");
             TextView loan_amount = (TextView) view.findViewById(R.id.loan_amount_detail);
@@ -211,7 +248,6 @@ public class HomeTwoActivity extends AppCompatActivity {
             TextView loan_term = (TextView) view.findViewById(R.id.loan_term_detail);
 //            TextView contribution = (TextView) view.findViewById(R.id.contribution_detail);
             EditText monthly_payment = (EditText) view.findViewById(R.id.monthly_payment);
-            EditText efective_interest = (EditText) view.findViewById(R.id.efective_interest);
             EditText total_interest = (EditText) view.findViewById(R.id.total_interest);
             EditText total_amount = (EditText) view.findViewById(R.id.total_amount);
 
@@ -221,7 +257,6 @@ public class HomeTwoActivity extends AppCompatActivity {
 //            contribution.setText(format.format(MainActivity.loanData.getContributionAmount()) + " MZN");
 
             monthly_payment.setText(format.format(MainActivity.loanData.getMonthlyPayment()));
-            efective_interest.setText(format.format(MainActivity.loanData.getEfectiveInterestRate()));
             total_interest.setText(format.format(MainActivity.loanData.getTotalInterest()));
             total_amount.setText(format.format(MainActivity.loanData.getTotalAmount()));
 
@@ -282,11 +317,18 @@ public class HomeTwoActivity extends AppCompatActivity {
             endOfMonthText.setText(format.format(endOfMonth));
 
 
-            loan_termText.setGravity(Gravity.CENTER_VERTICAL);
-            instalmentText.setGravity(Gravity.CENTER_VERTICAL);
-            interestText.setGravity(Gravity.CENTER_VERTICAL);
-            beginOfMonthText.setGravity(Gravity.CENTER_VERTICAL);
-            endOfMonthText.setGravity(Gravity.CENTER_VERTICAL);
+            loan_termText.setGravity(Gravity.LEFT);
+            instalmentText.setGravity(Gravity.LEFT);
+            interestText.setGravity(Gravity.LEFT);
+            beginOfMonthText.setGravity(Gravity.LEFT);
+            endOfMonthText.setGravity(Gravity.LEFT);
+
+
+            loan_termText.setTextColor(Color.BLACK);
+            instalmentText.setTextColor(Color.BLACK);
+            interestText.setTextColor(Color.BLACK);
+            beginOfMonthText.setTextColor(Color.BLACK);
+            endOfMonthText.setTextColor(Color.BLACK);
             //row.setLayoutParams(paramsRow);
             row.addView(loan_termText);
             row.addView(beginOfMonthText);
@@ -328,11 +370,17 @@ public class HomeTwoActivity extends AppCompatActivity {
                 beginOfMonthText.setText(format.format(beginOfMonth));
                 endOfMonthText.setText(format.format(endOfMonth));
 
-                loan_termText.setGravity(Gravity.CENTER_VERTICAL);
-                instalmentText.setGravity(Gravity.CENTER_VERTICAL);
-                interestText.setGravity(Gravity.CENTER_VERTICAL);
-                beginOfMonthText.setGravity(Gravity.CENTER_VERTICAL);
-                endOfMonthText.setGravity(Gravity.CENTER_VERTICAL);
+                loan_termText.setGravity(Gravity.LEFT);
+                instalmentText.setGravity(Gravity.LEFT);
+                interestText.setGravity(Gravity.LEFT);
+                beginOfMonthText.setGravity(Gravity.LEFT);
+                endOfMonthText.setGravity(Gravity.LEFT);
+
+                loan_termText.setTextColor(Color.BLACK);
+                instalmentText.setTextColor(Color.BLACK);
+                interestText.setTextColor(Color.BLACK);
+                beginOfMonthText.setTextColor(Color.BLACK);
+                endOfMonthText.setTextColor(Color.BLACK);
 
                 row1.addView(loan_termText);
                 row1.addView(beginOfMonthText);
@@ -346,17 +394,18 @@ public class HomeTwoActivity extends AppCompatActivity {
             }
         }
 
-        private ArrayList<HashMap<String, String>> toMap(List<LoanSimple> loans){
+        private ArrayList<HashMap<String, String>> toMap(List<Loan> loans){
             ArrayList<HashMap<String, String>> loanList = new ArrayList<HashMap<String, String>>();
 
             for (int i = 0; i <loans.size(); i++) {
                 HashMap<String,String> map = new HashMap<String,String>();
-                LoanSimple loan = loans.get(i);
+                Loan loan = loans.get(i);
 
-                map.put("loanAmount",loan.getLoanAmount());
-                map.put("loanTerm",loan.getLoanTerm());
-                map.put("monthlyPayment",loan.getMonthlyPayment());
-                map.put("Data","26/04/2016");
+                Calendar data;
+                data = loan.getDateSaved();
+                map.put("loanAmount",String.valueOf(loan.getLoanAmount()));
+                map.put("loanTerm", String.valueOf(loan.getLoanTerm()));
+                map.put("monthlyPayment",String.valueOf(loan.getMonthlyPayment()));
                 loanList.add(map);
             }
 
@@ -399,5 +448,36 @@ public class HomeTwoActivity extends AppCompatActivity {
             }
             return null;
         }
+    }
+
+    public static List<Loan> readLoan ( ) {
+        Cursor cursor;
+        LoanTableAcess loanTableAcess = new LoanTableAcess(context);
+        cursor = loanTableAcess.getAll();
+
+        List<Loan> loans = new ArrayList<Loan>();
+
+        Loan loan;
+
+        if(cursor.moveToFirst()) {
+            cursor.moveToFirst();
+            do {
+                Calendar date;
+                loan = new Loan();
+                loan.setLoanAmount(cursor.getDouble(1));
+                loan.setAnnualInterest(cursor.getDouble(2));
+                loan.setMonthlyPayment(cursor.getDouble(3));
+                loan.setLoanTerm(cursor.getInt(4));
+                loan.setTotalAmount(cursor.getDouble(5));
+                loan.setTotalInterest(cursor.getDouble(6));
+                date = Calendar.getInstance();
+                date.setTimeInMillis(cursor.getLong(7));
+                loan.setDateSaved(date);
+                loans.add(loan);
+            } while (cursor.moveToNext());
+
+        }
+
+        return loans;
     }
 }

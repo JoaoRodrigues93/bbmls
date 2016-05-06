@@ -1,5 +1,7 @@
 package mz.co.barclays.barclaysloansimulator.models;
 
+import java.util.Calendar;
+
 import mz.co.barclays.barclaysloansimulator.formulas.Finance;
 
 /**
@@ -17,9 +19,11 @@ public class Loan {
     private double efectiveInterestRate;
     private double totalInterest;
     private double totalAmount;
+    private Calendar dateSaved;
 
     public Loan() {
         this.contributionAmount =0;
+        this.dateSaved = Calendar.getInstance();
     }
 
     public long getId() {
@@ -104,5 +108,33 @@ public class Loan {
         else
         this.totalInterest = this.totalAmount - this.loanAmount;
 
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setMonthlyPayment(double monthlyPayment) {
+        this.monthlyPayment = monthlyPayment;
+    }
+
+    public void setTotalInterest(double totalInterest) {
+        this.totalInterest = totalInterest;
+    }
+
+    public Calendar getDateSaved() {
+        return dateSaved;
+    }
+
+    public void setDateSaved(Calendar dateSaved) {
+        this.dateSaved = dateSaved;
+    }
+
+    public void setTotalAmount(double totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+
+    public void setEfectiveInterestRate(double efectiveInterestRate) {
+        this.efectiveInterestRate = efectiveInterestRate;
     }
 }

@@ -2,16 +2,23 @@ package mz.co.barclays.barclaysloansimulator;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.UiThread;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import mz.co.barclays.barclaysloansimulator.formulas.Finance;
 import mz.co.barclays.barclaysloansimulator.models.Loan;
@@ -32,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private SeekBar.OnSeekBarChangeListener onSeekBarChangeAmount = new SeekBar.OnSeekBarChangeListener() {
         @Override
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-            Toast.makeText(getApplicationContext(),"Loan amount "+progress,Toast.LENGTH_LONG).show();
+
         }
 
         @Override
@@ -99,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
         //SeekBar seek_amount = (SeekBar)findViewById(R.id.seek_loan_amount);
         SeekBar seek_interest_rate = (SeekBar)findViewById(R.id.seek_interest_rate);
         SeekBar seek_loan_term = (SeekBar)findViewById(R.id.seek_loan_term);
@@ -107,6 +115,11 @@ public class MainActivity extends AppCompatActivity {
         seek_interest_rate.setOnSeekBarChangeListener(onSeekBarChangeInterest);
         seek_loan_term.setOnSeekBarChangeListener(onSeekBarChangeTerm);
 
+        EditText loanAmountText = (EditText)findViewById(R.id.loan_amount);
+        EditText annualInterestText = (EditText) findViewById(R.id.annual_interest);
+        EditText loanTermsText = (EditText) findViewById(R.id.loan_term);
+
+        loanAmountText.setText(String.valueOf(2000));
         seek_interest_rate.setProgress(10);
         seek_loan_term.setProgress(24);
 
@@ -186,5 +199,10 @@ public class MainActivity extends AppCompatActivity {
 //            contributionAmountText.setText(String.valueOf(contribution));
 //            contributionPercentText.setText(String.valueOf(percent));
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }

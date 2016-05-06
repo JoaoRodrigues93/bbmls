@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">Barclays Loan Simulator</string>
     <string name="action_settings">Settings</string>
-    <string name="loan_amount_hint">Loan Amount</string>
-    <string name="annual_interest_hint">Annual Interest</string>
-    <string name="loan_term_hint">Loan Terms</string>
+    <string name="loan_amount_hint">Ex: 2000</string>
+    <string name="annual_interest_hint">Ex: 5</string>
+    <string name="loan_term_hint">Ex: 12</string>
     <string name="contribution_hint">Participated Amount</string>
     <string name="contribution_amount_hint">Amount</string>
     <string name="contribution_percent_hint">Percent</string>
