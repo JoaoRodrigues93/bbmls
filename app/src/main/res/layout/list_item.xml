@@ -1,44 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/tile"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="16dp"
+        android:layout_width="50dp"
+        android:text="1"
+        android:textSize="24sp"
+        android:textColor="#ffffff"
+        android:gravity="center"
+        android:background="@drawable/circle"
+        android:layout_height="50dp" />
 
     <LinearLayout
-        android:orientation="horizontal"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/loan_amount_item"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="2000 MZN"
+                android:layout_weight="1"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:text="26/04/2016"
+                android:id="@+id/date_item" />
+
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/loan_amount_item"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="2000 MZN"
-            android:layout_weight="1"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="#000000" />
-
-        <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/loan_term_item"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:text="26/04/2016"
-            android:id="@+id/date_item" />
+            android:text="12 Months"
+            android:textColor="#000000" />
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/loan_term_item"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        android:text="12 Months"
-        android:textColor="#000000" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="399.00"
-        android:id="@+id/monthly_payment_item"
-        android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        android:textColor="#000000" />
 
 </LinearLayout>

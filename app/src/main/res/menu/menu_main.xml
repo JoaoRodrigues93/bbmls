@@ -2,9 +2,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="mz.co.barclays.barclaysloansimulator.MainActivity">
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
+
+    <item android:id="@+id/about"
+        android:title="About"/>
+    <item android:id="@+id/version" android:title="Version" />
+    <item android:id="@+id/contact" android:title="Contact details" />
 </menu>

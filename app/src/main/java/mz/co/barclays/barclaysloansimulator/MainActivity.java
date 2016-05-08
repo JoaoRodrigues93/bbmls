@@ -20,7 +20,11 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 import mz.co.barclays.barclaysloansimulator.formulas.Finance;
+import mz.co.barclays.barclaysloansimulator.formulas.FormatValues;
 import mz.co.barclays.barclaysloansimulator.models.Loan;
 
 
@@ -61,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
             EditText annualInterestText = (EditText) findViewById(R.id.annual_interest);
             float progressFloat = progress;
-            float annualInterest = progressFloat/2;
+            float annualInterest = progressFloat/4;
 
             annualInterestText.setText(""+annualInterest);
         }
@@ -82,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
             EditText loanTermText = (EditText) findViewById(R.id.loan_term);
 
-            loanTermText.setText(""+progress);
+            loanTermText.setText(""+(progress*12));
         }
 
         @Override
@@ -120,8 +124,8 @@ public class MainActivity extends AppCompatActivity {
         EditText loanTermsText = (EditText) findViewById(R.id.loan_term);
 
         loanAmountText.setText(String.valueOf(2000));
-        seek_interest_rate.setProgress(10);
-        seek_loan_term.setProgress(24);
+        seek_interest_rate.setProgress(48);
+        seek_loan_term.setProgress(2);
 
     }
 
@@ -187,11 +191,15 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
 
         if(onBack){
+            FormatValues formatValues = new FormatValues();
             EditText loanAmountText = (EditText)findViewById(R.id.loan_amount);
             EditText annualInterestText = (EditText) findViewById(R.id.annual_interest);
             EditText loanTermsText = (EditText) findViewById(R.id.loan_term);
 //            EditText contributionAmountText = (EditText)findViewById(R.id.contribution_amount);
 //            EditText contributionPercentText = (EditText)findViewById(R.id.contribution_percent);
+
+            loanAmount = new BigDecimal(loanAmount).setScale(2, RoundingMode.UP).doubleValue();
+            annualInterest = new BigDecimal(annualInterest).setScale(2, RoundingMode.UP).doubleValue();
 
             loanAmountText.setText(String.valueOf(loanAmount));
             annualInterestText.setText(String.valueOf(annualInterest));
