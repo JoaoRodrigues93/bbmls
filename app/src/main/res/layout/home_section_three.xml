@@ -8,10 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/listView"
-        android:layout_gravity="center_horizontal" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="60dp"></View>
+        android:layout_gravity="center_horizontal"
+    android:paddingBottom="65dp" />
 
 </LinearLayout>
