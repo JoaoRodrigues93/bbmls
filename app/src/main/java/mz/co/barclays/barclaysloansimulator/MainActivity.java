@@ -26,7 +26,7 @@ import java.math.RoundingMode;
 import mz.co.barclays.barclaysloansimulator.formulas.Finance;
 import mz.co.barclays.barclaysloansimulator.formulas.FormatValues;
 import mz.co.barclays.barclaysloansimulator.models.Loan;
-
+import mz.co.barclays.barclaysloansimulator.models.MainMenuActions;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -145,10 +145,17 @@ public class MainActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+       switch (id ){
+           case R.id.about:
+               MainMenuActions.openAbout(this);
+               return true;
+           case R.id.version:
+               MainMenuActions.openVersion(this);
+               return true;
+           case R.id.contact:
+               MainMenuActions.openContact(this);
+               return true;
+       }
 
         return super.onOptionsItemSelected(item);
     }
@@ -213,4 +220,5 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
     }
+
 }

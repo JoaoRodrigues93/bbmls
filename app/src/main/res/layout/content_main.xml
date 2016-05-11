@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="20dp"
+    android:paddingTop="10dp"
     android:paddingBottom="10dp"
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
@@ -20,53 +20,151 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
-        android:layout_height="match_parent">
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/layout_loan_amount"
-        android:layout_width="match_parent"
-        android:layout_marginTop="10dp"
-        android:layout_height="wrap_content">
-        <EditText
-            android:id="@+id/loan_amount"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/loan_amount_hint"
-            android:textSize="34sp"
-            android:inputType="numberDecimal"
-            />
-    </android.support.design.widget.TextInputLayout>
+        android:layout_height="match_parent"
+        android:descendantFocusability="beforeDescendants"
+        android:focusableInTouchMode="true"
+        >
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/layout_annual_interest"
-        android:layout_width="match_parent"
-        android:layout_marginTop="10dp"
-        android:layout_height="wrap_content">
-        <EditText
-            android:id="@+id/annual_interest"
-            android:layout_width="fill_parent"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/annual_interest_hint"
-            android:inputType="numberDecimal"
-            android:textSize="20sp"
-            />
-    </android.support.design.widget.TextInputLayout>
+            android:orientation="vertical"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Loan Amount"
+                android:id="@+id/textView2" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/layout_loan_term"
-        android:layout_width="match_parent"
-        android:layout_marginTop="10dp"
-        android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/loan_amount"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/loan_amount_hint"
+                    android:inputType="numberDecimal"
+                    android:textSize="32sp"
+                    android:singleLine="true"
+                    android:layout_weight="1"
+                    android:gravity="right" />
 
-        <EditText
-            android:id="@+id/loan_term"
-            android:layout_width="fill_parent"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="MZN"
+                    android:id="@+id/textView7" />
+
+            </LinearLayout>
+
+            <!--<SeekBar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/seek_loan_amount"
+                android:progressBackgroundTint="@color/colorAccent"
+                />-->
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/loan_term_hint"
-            android:inputType="number"
-            android:textSize="20sp"
-            />
-    </android.support.design.widget.TextInputLayout>
-   <!-- <TextView
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Interest Rate"
+                android:id="@+id/textView6" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:id="@+id/annual_interest"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/annual_interest_hint"
+                    android:inputType="numberDecimal"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:layout_weight="1"
+                    android:gravity="right" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="%"
+                    android:id="@+id/textView8" />
+            </LinearLayout>
+
+            <SeekBar
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:max="100"
+                android:id="@+id/seek_interest_rate"
+                android:layout_marginTop="5dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Loan Term"
+                android:id="@+id/textView4" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/loan_term"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/loan_term_hint"
+                    android:inputType="number"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:singleLine="false" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="months"
+                    android:id="@+id/textView9" />
+            </LinearLayout>
+
+            <SeekBar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="6"
+                android:id="@+id/seek_loan_term"
+                android:layout_marginTop="5dp" />
+        </LinearLayout>
+
+
+        <!-- <TextView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -108,7 +206,7 @@
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:textSize="20sp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="5dp"
         android:layout_gravity="right"
         android:onClick="calculateLoan"
      />
