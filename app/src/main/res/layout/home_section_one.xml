@@ -229,20 +229,18 @@
             android:layout_gravity="right"
             android:onClick="saveLoan"
             />-->
-        <Button
+        <android.support.v7.widget.AppCompatButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/button_save"
-            android:id="@+id/button"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:textSize="20sp"
+            android:id="@+id/button_save"
+            android:padding="12dp"
+            android:textSize="@dimen/text_body_size"
+            android:textColor="@color/text_color_white"
+            android:background="@color/colorPrimary"
             android:layout_marginTop="5dp"
             android:layout_gravity="right"
-            android:onClick="saveLoan"
-            style="@style/Widget.AppCompat.Button.Colored" />
+             />
     </LinearLayout>
          <View
             android:layout_width="match_parent"

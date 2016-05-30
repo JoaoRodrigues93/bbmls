@@ -1,54 +1,72 @@
 <resources>
-    <string name="app_name">Barclays Loan Simulator</string>
-    <string name="action_settings">Settings</string>
+    <!-- Global Application -->
+    <string name="title_activity_splash_screen">Simulador de Leasing</string>
+    <string name="title_activity_version">Versão</string>
+    <string name="title_activity_contact">Contacto</string>
+    <string name="title_activity_about">Acerca</string>
+    <string name="app_name">Simulador de Leasing</string>
+    <string name="action_settings">Definições</string>
+    <string name="title_activity_home_screen">Simulador</string>
+    <string name="title_activity_home_two">Detalhes do Emprestimo</string>
+
+    <!-- Main Screen -->
     <string name="loan_amount_hint">Ex: 2000</string>
     <string name="annual_interest_hint">Ex: 5</string>
     <string name="loan_term_hint">Ex: 12</string>
-    <string name="contribution_hint">Participated Amount</string>
-    <string name="contribution_amount_hint">Amount</string>
-    <string name="contribution_percent_hint">Percent</string>
+    <string name="loan_amount_label">Montante</string>
+    <string name="annual_interest_label">Taxa de Juro</string>
+    <string name="loan_terms_label">Período de Financiamento</string>
+    <string name="calculate_button">Calcular</string>
 
-    <string name="loan_amount_label">Loan Amount</string>
-    <string name="annual_interest_label">Annual Interest</string>
-    <string name="loan_terms_label">Loan Terms</string>
-    <string name="down_payment_label">Down Payment</string>
+    <!-- Details -->
+    <string name="loan_amount_description">Montante:</string>
+    <string name="interest_amount_description">Taxa de Juro:</string>
+    <string name="loan_term_description">Período de Financimento:</string>
+    <string name="monthly_payment_description">Pagamento Mensal</string>
+    <string name="total_interest_description">Total de Juros</string>
+    <string name="total_amount_description">Montante Total</string>
+    <string name="loan_saved">Guardado</string>
 
-    <string name="calculate_button">Calculate</string>
-    <string name="title_activity_home_screen">HomeScreen</string>
-    <string name="section_format">Hello World from section: %1$d</string>
-    <string name="title_activity_home_two">Barclays Loan Simulator</string>
-
-    <string name="section_1">DETAILS</string>
-    <string name="section_2">REPAYMENT SCHEDULE</string>
-    <string name="section_3">MY LOANS</string>
-
-    <string name="loan_amount_description">Loan Amount:</string>
-    <string name="interest_amount_description">Interest Rate:</string>
-    <string name="loan_term_description">Loan Term:</string>
-    <string name="contribution_description">Participated Amount:</string>
-
-    <string name="monthly_payment_description">Monthly Payment</string>
-    <string name="efective_interest_description">Efective Interest Rate</string>
-    <string name="total_interest_description">Total Interest</string>
-    <string name="total_amount_description">Total Amount</string>
-
-    <string name="months">months</string>
-
+    <!-- Schedule Table -->
     <string name="table_header_1">No</string>
-    <string name="table_header_2">Begining of Month</string>
-    <string name="table_header_3">Interest of Month</string>
-    <string name="table_header_4">Installment</string>
-    <string name="table_header_5">End of Month</string>
+    <string name="table_header_2">Inicio do Mês</string>
+    <string name="table_header_3">Juros do Mês</string>
+    <string name="table_header_4">Prestação</string>
+    <string name="table_header_5">Fim do Mês</string>
+    <string name="button_save">Guardar</string>
+    <!-- My Loans -->
 
-    <string name="button_save">Save</string>
+    <!-- About -->
+    <string name="about_header">Simulador de Leasing do Barclays</string>
+    <string name="about_body">Está aplicação foi concebida com o propósito de permitir o cálculo do financiamento de Leasing.</string>
+    <string name="about_disclaimer_header">\nAviso Legal</string>
+    <string name="about_disclaimer">Este simulador foi concebido para fornecer valores indicativos e aproximados. \nQuaisquer Valores
+        apurados são fornecidos a título informativo, não constituíndo nenhuma recomendação, conselho ou oferta definitiva de
+    compra ou venda de um producto ou serviço, não podendo ser considerados como confirmação de qualquer transacção, negócio ou contrato.
+    \nQuaisquer valores definitivos só poderão ser apurados pelo Banco após o fornecimento da documentação exigida, bem como a aprovação da
+        Direcção de Crédito, entre outros procedimentos actualmente em vigor no Barclays Bank Moçambique, S.A.</string>
 
-    <string name="title_activity_splash_screen">Barclays Loan Simulator</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <!-- Contact -->
+    <string name="contact_header">Contacte-nos:</string>
+    <string name="contact_email_desc">E-mail: </string>
+    <string name="contact_number_desc">Linha de Cliente: </string>
+    <string name="contact_email">bbmleasing@barclays.co.mz</string>
+    <string name="or"> ou </string>
+    <string name="contact_number1">+258823016111</string>
+    <string name="contact_number2">+25821344400</string>
+    <!-- Version -->
+    <string name="version_header">Simulador de Leasing do Barclays</string>
+    <string name="version_body1">Versão: 1.0.0</string>
+    <string name="version_body2">Barclays 2016. Todos os Direitos Reservados</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_version">VersionActivity</string>
-    <string name="title_activity_contact">ContactActivity</string>
+    <!-- Others -->
+    <string name="section_1">DETALHES</string>
+    <string name="section_2">PLANO DE REEMBOLSO</string>
+    <string name="section_3">MEUS EMPRESTIMOS</string>
+    <string name="months">meses</string>
 
+    <!-- Main Menu -->
+    <string name="main_about">Acerca</string>
+    <string name="main_contact">Detalhes de Contacto</string>
+    <string name="main_version">Versão</string>
 </resources>

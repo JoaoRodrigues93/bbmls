@@ -7,10 +7,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import mz.co.barclays.barclaysloansimulator.formulas.FormatValues;
+import mz.co.barclays.barclaysloansimulator.models.Loan;
+import mz.co.barclays.barclaysloansimulator.models.LoanTableAcess;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,6 +28,8 @@ public class DetailsFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+    private Button btnSave;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -63,7 +69,19 @@ public class DetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.home_section_one,container,false);
+        btnSave = (Button) root.findViewById(R.id.button_save);
         //preencheDetalhes(root);
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                long id;
+                LoanTableAcess loanTableAcess = new LoanTableAcess(view.getContext());
+                Loan loan = MainActivity.loanData;
+                id = loanTableAcess.insert(loan);
+
+                Toast.makeText(view.getContext(),R.string.loan_saved,Toast.LENGTH_LONG).show();
+            }
+        });
         return root;
     }
 

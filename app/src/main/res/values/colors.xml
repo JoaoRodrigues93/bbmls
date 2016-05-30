@@ -5,6 +5,10 @@
     <color name="colorAccent">#2196f3</color>
 
     <color name="black_overlay">#66000000</color>
+    <color name="text_color">#000000</color>
+    <color name="text_color_white">#FFFFFF</color>
+    <color name="content_background">#E0E0E0</color>
+    <color name="white_background">#FFFFFF</color>
 
     <array name="letter_tile_colors">
         <item>#f16364</item>

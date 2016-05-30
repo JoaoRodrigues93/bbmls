@@ -11,9 +11,7 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
-            -->
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".HomeTwoActivity"
             android:label="@string/title_activity_home_two"
@@ -23,8 +21,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="mz.co.barclays.barclaysloansimulator.MainActivity" />
         </activity>
-
-        <uses-permission android:name="android.permission.READ_CONTACTS" />
 
         <activity
             android:name=".SplashScreen"
@@ -37,15 +33,33 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AboutActivity" />
+        <activity
+            android:name=".AboutActivity"
+            android:label="@string/title_activity_about"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="mz.co.barclays.barclaysloansimulator.MainActivity" />
+        </activity>
         <activity
             android:name=".VersionActivity"
             android:label="@string/title_activity_version"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="mz.co.barclays.barclaysloansimulator.MainActivity" />
+        </activity>
         <activity
             android:name=".ContactActivity"
             android:label="@string/title_activity_contact"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="mz.co.barclays.barclaysloansimulator.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

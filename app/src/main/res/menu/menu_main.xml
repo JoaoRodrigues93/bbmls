@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="mz.co.barclays.barclaysloansimulator.MainActivity">
     <item android:id="@+id/about"
-        android:title="About"/>
-    <item android:id="@+id/version" android:title="Version" />
-    <item android:id="@+id/contact" android:title="Contact details" />
+        android:title="@string/main_about"/>
+    <item android:id="@+id/version" android:title="@string/main_version" />
+    <item android:id="@+id/contact" android:title="@string/main_contact" />
 </menu>

@@ -46,7 +46,6 @@ public class MyLoansFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-
     public MyLoansFragment() {
         // Required empty public constructor
     }
@@ -160,7 +159,7 @@ public class MyLoansFragment extends Fragment {
             Calendar data;
             data = loan.getDateSaved();
             map.put("loanAmount",formatValues.formatAmount(loan.getLoanAmount())+" MZN");
-            map.put("loanTerm", formatValues.formatMonth(loan.getLoanTerm())+ " months");
+            map.put("loanTerm", formatValues.formatMonth(loan.getLoanTerm())+ " "+ getString(R.string.months));
             map.put("tile",String.valueOf(i + 1));
             map.put("data",formatValues.formatDate(data));
             loanList.add(map);

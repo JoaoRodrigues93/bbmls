@@ -13,6 +13,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -39,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
     public static double contribution;
     public static double percent;
     public static Loan loanData;
+
+    private Button btn_calculateLoan;
 
     private SeekBar.OnSeekBarChangeListener onSeekBarChangeAmount = new SeekBar.OnSeekBarChangeListener() {
         @Override
@@ -110,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        btn_calculateLoan = (Button) findViewById(R.id.btn_calculateLoan);
 
         //SeekBar seek_amount = (SeekBar)findViewById(R.id.seek_loan_amount);
         SeekBar seek_interest_rate = (SeekBar)findViewById(R.id.seek_interest_rate);
@@ -126,6 +130,39 @@ public class MainActivity extends AppCompatActivity {
         loanAmountText.setText(String.valueOf(2000));
         seek_interest_rate.setProgress(48);
         seek_loan_term.setProgress(2);
+
+        btn_calculateLoan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EditText loanAmountText = (EditText)findViewById(R.id.loan_amount);
+                EditText annualInterestText = (EditText) findViewById(R.id.annual_interest);
+                EditText loanTermsText = (EditText) findViewById(R.id.loan_term);
+//        EditText contributionAmountText = (EditText)findViewById(R.id.contribution_amount);
+//        EditText contributionPercentText = (EditText)findViewById(R.id.contribution_percent);
+
+
+                loanAmount = Float.valueOf(loanAmountText.getText().toString());
+                annualInterest = Float.valueOf(annualInterestText.getText().toString());
+                loanTerm = Integer.valueOf(loanTermsText.getText().toString());
+//        contribution = Float.valueOf(contributionAmountText.getText().toString());
+//        percent = Float.valueOf(contributionPercentText.getText().toString());
+
+
+                loanData = new Loan();
+
+                loanData.setAnnualInterest(annualInterest);
+                loanData.setLoanAmount(loanAmount);
+                loanData.setLoanTerm(loanTerm);
+                loanData.setContributionAmount(contribution);
+                loanData.setContributionPercent(percent);
+                loanData.calculateLoan();
+
+                Intent intent = new Intent(getApplicationContext(), HomeTwoActivity.class);
+                if(onBack==false)
+                    onBack = true;
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -158,38 +195,6 @@ public class MainActivity extends AppCompatActivity {
        }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public void calculateLoan (View view){
-        EditText loanAmountText = (EditText)findViewById(R.id.loan_amount);
-        EditText annualInterestText = (EditText) findViewById(R.id.annual_interest);
-        EditText loanTermsText = (EditText) findViewById(R.id.loan_term);
-//        EditText contributionAmountText = (EditText)findViewById(R.id.contribution_amount);
-//        EditText contributionPercentText = (EditText)findViewById(R.id.contribution_percent);
-
-
-
-
-        loanAmount = Float.valueOf(loanAmountText.getText().toString());
-        annualInterest = Float.valueOf(annualInterestText.getText().toString());
-        loanTerm = Integer.valueOf(loanTermsText.getText().toString());
-//        contribution = Float.valueOf(contributionAmountText.getText().toString());
-//        percent = Float.valueOf(contributionPercentText.getText().toString());
-
-
-        loanData = new Loan();
-
-        loanData.setAnnualInterest(annualInterest);
-        loanData.setLoanAmount(loanAmount);
-        loanData.setLoanTerm(loanTerm);
-        loanData.setContributionAmount(contribution);
-        loanData.setContributionPercent(percent);
-        loanData.calculateLoan();
-
-        Intent intent = new Intent(this,HomeTwoActivity.class);
-        if(onBack==false)
-            onBack = true;
-        startActivity(intent);
     }
 
 

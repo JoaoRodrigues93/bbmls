@@ -42,6 +42,7 @@ import mz.co.barclays.barclaysloansimulator.formulas.FormatValues;
 import mz.co.barclays.barclaysloansimulator.formulas.ScheduleTableFormulas;
 import mz.co.barclays.barclaysloansimulator.models.Loan;
 import mz.co.barclays.barclaysloansimulator.models.LoanTableAcess;
+import mz.co.barclays.barclaysloansimulator.models.MainMenuActions;
 import mz.co.barclays.barclaysloansimulator.models.ScheduleTable;
 
 public class HomeTwoActivity extends AppCompatActivity {
@@ -93,7 +94,7 @@ public class HomeTwoActivity extends AppCompatActivity {
         Loan loan = MainActivity.loanData;
         id = loanTableAcess.insert(loan);
 
-        Toast.makeText(view.getContext(),"Loan Saved",Toast.LENGTH_LONG).show();
+        Toast.makeText(view.getContext(),R.string.loan_saved,Toast.LENGTH_LONG).show();
     }
 
 
@@ -102,7 +103,7 @@ public class HomeTwoActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        //getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
@@ -114,8 +115,17 @@ public class HomeTwoActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+
+        switch (id ){
+            case R.id.about:
+                MainMenuActions.openAbout(this);
+                return true;
+            case R.id.version:
+                MainMenuActions.openVersion(this);
+                return true;
+            case R.id.contact:
+                MainMenuActions.openContact(this);
+                return true;
         }
 
         return super.onOptionsItemSelected(item);
